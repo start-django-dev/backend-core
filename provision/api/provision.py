@@ -32,6 +32,7 @@ class ProvisionAPIView(GenericViewSet):
 
         serializer: CreateProvisionSerializer = serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        serializer.save()
 
         log.info("Provision data : " + str(serializer.data))
 
