@@ -10,6 +10,10 @@
 ```text
 pip install -r requirements.txt
 ```
+``pre-commit`` 을 활성화합니다
+```text
+pre-commit install
+```
 
 ### Run server
 ```text
