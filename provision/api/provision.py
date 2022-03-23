@@ -7,6 +7,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
+from provision.models.provision import Provision
 from provision.serializers.provision import CreateProvisionSerializer
 
 log = logging.getLogger("django")
@@ -32,9 +33,11 @@ class ProvisionAPIView(GenericViewSet):
 
         serializer: CreateProvisionSerializer = serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        provision_obj: Provision = serializer.save()
 
         log.info("Provision data : " + str(serializer.data))
+
+        log.info("Created provision ID : " + str(provision_obj.id))
 
         return Response(
             status=status.HTTP_201_CREATED,
