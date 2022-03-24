@@ -1,14 +1,14 @@
 import logging
 from typing import Dict, List
 
-from rest_framework import status
+from django.http import HttpResponse
 from rest_framework.parsers import JSONParser
 from rest_framework.request import Request
-from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from provision.models.provision import Provision
 from provision.serializers.provision import CreateProvisionSerializer
+from provision.service.provision import ProvisionService
 
 log = logging.getLogger("django")
 
@@ -26,7 +26,7 @@ class ProvisionAPIView(GenericViewSet):
 
         return super().get_serializer_class()
 
-    def create(self, request: Request, *args: List, **kwargs: Dict) -> Response:
+    def create(self, request: Request, *args: List, **kwargs: Dict) -> HttpResponse:
         log.info("Generate django project API")
 
         serializer_class = self.get_serializer_class()
@@ -39,7 +39,8 @@ class ProvisionAPIView(GenericViewSet):
 
         log.info("Created provision ID : " + str(provision_obj.id))
 
-        return Response(
-            status=status.HTTP_201_CREATED,
-            data=serializer.data,
-        )
+        provision_service = ProvisionService(**serializer.data)
+
+        response: HttpResponse = provision_service.make_zip_file_response()
+
+        return response
