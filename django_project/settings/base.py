@@ -105,6 +105,8 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+DJANGO_PROJECT_SAVE_PATH = BASE_DIR / "generate_projects"
+
 LOGGING = {
     "version": 1,
     "filters": {
