@@ -17,6 +17,7 @@ repos:
         args:
           - "--max-line-length=200"
           - "--ignore=F401,F403,F405"
+          - "--extend-ignore=E203"
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v7.32.0
     hooks:
