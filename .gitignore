@@ -276,6 +276,8 @@ fabric.properties
 
 secrets.json
 
+data/
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 
