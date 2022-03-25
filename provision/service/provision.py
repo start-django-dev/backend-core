@@ -107,11 +107,11 @@ class ProvisionService:
 
         # 생성된 프로젝트를 zip 파일로 압축
         shutil.make_archive(
-            dir_name, "zip", settings.DJANGO_PROJECT_SAVE_PATH / dir_name
+            self.project_name, "zip", settings.DJANGO_PROJECT_SAVE_PATH / dir_name
         )
 
-        zip_path: str = settings.BASE_DIR / f"{dir_name}.zip"
-        filename: str = dir_name.replace(" ", "_")
+        zip_path: str = settings.BASE_DIR / f"{self.project_name}.zip"
+        filename: str = self.project_name.replace(" ", "_")
 
         return working_dir, zip_path, filename
 
