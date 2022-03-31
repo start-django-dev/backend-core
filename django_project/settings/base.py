@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # 3rd-part packages
 
-THIRD_PARTY_PACKAGES = []
+THIRD_PARTY_PACKAGES = [
+    "drf_yasg",
+]
 
 # Application definition
 
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "provision",
 ]
+INSTALLED_APPS += THIRD_PARTY_PACKAGES
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
